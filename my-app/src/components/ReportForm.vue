@@ -1,6 +1,7 @@
 <template>
   <form>
     <v-text-field
+      pattern="^([a-z])$"
       v-model="name"
       :error-messages="nameErrors"
       :counter="140"
@@ -60,12 +61,13 @@
 <script>
 import { validationMixin } from 'vuelidate';
 import { required, maxLength } from 'vuelidate/lib/validators';
+import { lowercaseValidator } from '@/utils/lowercase-validator';
 
 export default {
   name: 'ReportForm',
   mixins: [validationMixin],
   validations: {
-    name: { required, maxLength: maxLength(140) },
+    name: { required, maxLength: maxLength(140), lowerCase: lowercaseValidator },
     description: { required, maxLength: maxLength(140) },
   },
   data() {
@@ -86,6 +88,8 @@ export default {
       }
       if (!this.$v.name.required) {
         errors.push('Name is required.');
+      } else if (!this.$v.name.lowerCase) {
+        errors.push('Name should consist of only lowercase latin and _.');
       }
 
       return errors;
