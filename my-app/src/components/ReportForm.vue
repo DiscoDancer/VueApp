@@ -1,5 +1,5 @@
 <template>
-  <form>
+  <form @keyup.enter="submit">
     <v-text-field
       pattern="^([a-z])$"
       v-model="name"
