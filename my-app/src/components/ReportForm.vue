@@ -63,12 +63,14 @@ import { validationMixin } from 'vuelidate';
 import { required, maxLength } from 'vuelidate/lib/validators';
 import { lowercaseValidator } from '@/utils/lowercase-validator';
 
+export const maxTextSize = 140;
+
 export default {
   name: 'ReportForm',
   mixins: [validationMixin],
   validations: {
-    name: { required, maxLength: maxLength(140), lowerCase: lowercaseValidator },
-    description: { required, maxLength: maxLength(140) },
+    name: { required, maxLength: maxLength(maxTextSize), lowerCase: lowercaseValidator },
+    description: { required, maxLength: maxLength(maxTextSize) },
   },
   data() {
     return {
@@ -84,7 +86,7 @@ export default {
         return errors;
       }
       if (!this.$v.name.maxLength) {
-        errors.push('Name must be at most 140 characters long');
+        errors.push(`Name must be at most ${maxTextSize} characters long`);
       }
       if (!this.$v.name.required) {
         errors.push('Name is required.');
@@ -100,7 +102,7 @@ export default {
         return errors;
       }
       if (!this.$v.description.maxLength) {
-        errors.push('Description must be at most 140 characters long');
+        errors.push(`Description must be at most ${maxTextSize} characters long`);
       }
       if (!this.$v.description.required) {
         errors.push('Description is required.');
