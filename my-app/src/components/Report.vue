@@ -23,8 +23,10 @@
 
     <v-card-text>
       <v-chip
+        class="tag"
         v-for="tag in report.tags"
         :key="tag"
+        @click="$store.commit('setTags', [tag])"
       >
         {{tag}}
       </v-chip>
@@ -36,11 +38,11 @@
 export default {
   props: ['report'],
   name: 'Report',
-  data: () => ({
-  }),
 };
 </script>
 
-<style scoped>
-
+<style scoped lang="scss">
+  .tag {
+    cursor: pointer;
+  }
 </style>
