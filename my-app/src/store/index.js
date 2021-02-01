@@ -34,6 +34,9 @@ export default new Vuex.Store({
     ],
   },
   mutations: {
+    setSearch(state, value) {
+      state.search = value;
+    },
     addReport(state, { name, description, tags }) {
       state.reports.push({
         name,
@@ -66,5 +69,14 @@ export default new Vuex.Store({
     },
   },
   modules: {
+  },
+  getters: {
+    reportsFiltered(state) {
+      if (!state.search) {
+        return state.reports;
+      }
+
+      return state.reports.filter((x) => x.name.toLowerCase().includes(state.search.toLowerCase()));
+    },
   },
 });

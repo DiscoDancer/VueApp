@@ -53,11 +53,11 @@
         ></v-img>
       </template>
 
-      <v-container class="pa-0 ma-0">
+      <v-container fluid>
         <v-row>
           <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
           <v-spacer></v-spacer>
-          <h1>live search</h1>
+          <search></search>
         </v-row>
         <v-row>
           <v-app-bar-title class="ml-4 text-h4">Vue app</v-app-bar-title>
@@ -78,6 +78,7 @@
 <script>
 import Snackbar from '@/components/Snackbar.vue';
 import LiveDateTime from '@/components/LiveDateTime.vue';
+import Search from '@/components/Search.vue';
 
 export default {
   name: 'App',
@@ -91,6 +92,7 @@ export default {
   components: {
     snackbar: Snackbar,
     'live-date-time': LiveDateTime,
+    search: Search,
   },
 };
 </script>

@@ -6,7 +6,7 @@
         sm="12"
         md="6"
         lg="4"
-        v-for="report in $store.state.reports"
+        v-for="report in $store.getters.reportsFiltered"
         :key="report.id"
       >
         <report
