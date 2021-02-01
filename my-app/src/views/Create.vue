@@ -1,10 +1,15 @@
 <template>
-  <h1>Hello world from Create</h1>
+  <report-form class="ma-3"></report-form>
 </template>
 
 <script>
+import ReportForm from '@/components/ReportForm.vue';
+
 export default {
   name: 'Create',
+  components: {
+    'report-form': ReportForm,
+  },
 };
 </script>
 
