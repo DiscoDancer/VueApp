@@ -8,6 +8,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     search: null,
+    tags: [],
     snackbar: {
       show: false,
       text: '',
@@ -23,19 +24,22 @@ export default new Vuex.Store({
         id: nanoid(),
         name: 'All by myself',
         description: 'I just want to be with you. I just want to have something to do. Tonight.',
-        tags: [],
+        tags: ['Invest', 'Daily'],
       },
       {
         id: nanoid(),
         name: 'Wait',
         description: 'Now',
-        tags: ['want'],
+        tags: ['Customer'],
       },
     ],
   },
   mutations: {
     setSearch(state, value) {
       state.search = value;
+    },
+    setTags(state, value) {
+      state.tags = value;
     },
     addReport(state, { name, description, tags }) {
       state.reports.push({
@@ -72,11 +76,24 @@ export default new Vuex.Store({
   },
   getters: {
     reportsFiltered(state) {
+      let reports;
+
       if (!state.search) {
-        return state.reports;
+        reports = state.reports;
+      } else {
+        reports = state.reports
+          .filter((x) => x.name.toLowerCase().includes(state.search.toLowerCase()));
       }
 
-      return state.reports.filter((x) => x.name.toLowerCase().includes(state.search.toLowerCase()));
+      if (state.tags && state.tags.length > 0) {
+        reports = reports
+          .filter(
+            (report) => report.tags.length > 0
+              && state.tags.every((tag) => report.tags.includes(tag)),
+          );
+      }
+
+      return reports;
     },
   },
 });
