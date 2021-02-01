@@ -69,14 +69,15 @@
 
     </v-app-bar>
     <v-main>
-      <!--  -->
       <router-view></router-view>
-      <!--      <snackbar/>-->
+      <snackbar/>
     </v-main>
   </v-app>
 </template>
 
 <script>
+import Snackbar from '@/components/Snackbar.vue';
+
 export default {
   name: 'App',
   data: () => ({
@@ -86,5 +87,8 @@ export default {
       { title: 'Create', icon: 'mdi-plus', to: '/create' },
     ],
   }),
+  components: {
+    snackbar: Snackbar,
+  },
 };
 </script>

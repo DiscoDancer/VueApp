@@ -8,6 +8,10 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     search: null,
+    snackbar: {
+      show: false,
+      text: '',
+    },
     reports: [
       {
         id: nanoid(),
@@ -38,11 +42,27 @@ export default new Vuex.Store({
         id: nanoid(),
       });
     },
+    hideSnackbar(state) {
+      state.snackbar.show = false;
+    },
+    showSnackbar(state, text) {
+      let timeout = 0;
+      if (state.snackbar.show) {
+        state.snackbar.show = false;
+        timeout = 300;
+      }
+
+      setTimeout(() => {
+        state.snackbar.show = true;
+        state.snackbar.text = text;
+      }, timeout);
+    },
   },
   actions: {
     addReport({ commit }, payload) {
       commit('addReport', payload);
       router.push('/');
+      commit('showSnackbar', 'Report added!');
     },
   },
   modules: {
