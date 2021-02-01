@@ -6,7 +6,7 @@
       @blur="searchClosed = true"
       @input="$store.commit('setSearch', $event)"
       :class="{closed: searchClosed && !$store.state.search}"
-      placeholder="Search"
+      placeholder="Search by name"
       prepend-inner-icon="mdi-magnify"
       filled
       dense
