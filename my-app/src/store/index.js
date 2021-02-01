@@ -16,20 +16,26 @@ export default new Vuex.Store({
     reports: [
       {
         id: nanoid(),
-        name: 'Wake up',
-        description: 'Now',
+        name: 'Golden Years',
+        description: 'Don\'t let me hear you say life\'s taking you nowhere Angel Come get up, my baby',
         tags: [],
       },
       {
         id: nanoid(),
-        name: 'All by myself',
-        description: 'I just want to be with you. I just want to have something to do. Tonight.',
+        name: 'Ziggy Stardust',
+        description: 'Ziggy played guitar Jamming good with Weird and Gilly And the Spiders from Mars',
         tags: ['Invest', 'Daily'],
       },
       {
         id: nanoid(),
-        name: 'Wait',
-        description: 'Now',
+        name: 'Space Oddity',
+        description: 'Ground Control to Major Tom  Ground Control to Major Tom Take your protein pills and put your helmet on',
+        tags: ['Customer'],
+      },
+      {
+        id: nanoid(),
+        name: 'Heroes',
+        description: 'I, I will be king And you, you will be queen Though nothing will drive them away We can beat them, just for one day',
         tags: ['Customer'],
       },
     ],
