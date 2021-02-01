@@ -63,7 +63,7 @@
           <v-app-bar-title class="ml-4 text-h4">Vue app</v-app-bar-title>
         </v-row>
         <v-row>
-          <h1 class="ml-4">live time</h1>
+          <live-date-time></live-date-time>
         </v-row>
       </v-container>
 
@@ -77,6 +77,7 @@
 
 <script>
 import Snackbar from '@/components/Snackbar.vue';
+import LiveDateTime from '@/components/LiveDateTime.vue';
 
 export default {
   name: 'App',
@@ -89,6 +90,7 @@ export default {
   }),
   components: {
     snackbar: Snackbar,
+    'live-date-time': LiveDateTime,
   },
 };
 </script>
