@@ -1,5 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import { nanoid } from 'nanoid';
+import router from '../router/index';
 
 Vue.use(Vuex);
 
@@ -8,19 +10,19 @@ export default new Vuex.Store({
     search: null,
     reports: [
       {
-        id: 1,
+        id: nanoid(),
         name: 'Wake up',
         description: 'Now',
         tags: [],
       },
       {
-        id: 2,
+        id: nanoid(),
         name: 'All by myself',
         description: 'I just want to be with you. I just want to have something to do. Tonight.',
         tags: [],
       },
       {
-        id: 3,
+        id: nanoid(),
         name: 'Wait',
         description: 'Now',
         tags: ['want'],
@@ -28,8 +30,20 @@ export default new Vuex.Store({
     ],
   },
   mutations: {
+    addReport(state, { name, description, tags }) {
+      state.reports.push({
+        name,
+        description,
+        tags,
+        id: nanoid(),
+      });
+    },
   },
   actions: {
+    addReport({ commit }, payload) {
+      commit('addReport', payload);
+      router.push('/');
+    },
   },
   modules: {
   },

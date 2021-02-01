@@ -33,7 +33,7 @@
     <v-divider></v-divider>
 
     <v-autocomplete
-      v-model="selected"
+      v-model="tags"
       :items="['Customer', 'Support', 'Invest', 'Daily', 'Weekly']"
       chips
       label="Tags"
@@ -76,7 +76,7 @@ export default {
     return {
       name: '',
       description: '',
-      selected: [],
+      tags: [],
     };
   },
   computed: {
@@ -114,12 +114,14 @@ export default {
   methods: {
     submit() {
       this.$v.$touch();
+      const { name, description, tags } = this;
+      this.$store.dispatch('addReport', { name, description, tags });
     },
     clear() {
       this.$v.$reset();
       this.name = '';
       this.description = '';
-      this.selected = [];
+      this.tags = [];
     },
   },
 };
