@@ -6,8 +6,11 @@
       :counter="140"
       label="Name"
       required
+      clearable
       @input="$v.name.$touch()"
       @blur="$v.name.$touch()"
+      hint="Only lowercase latin and _"
+      persistent-hint
     ></v-text-field>
 
     <v-divider></v-divider>
@@ -18,6 +21,7 @@
       :error-messages="descriptionErrors"
       :counter="140"
       required
+      clearable
       maxlength="140"
       full-width
       single-line
