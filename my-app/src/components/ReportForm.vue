@@ -34,7 +34,7 @@
 
     <v-autocomplete
       v-model="tags"
-      :items="['Customer', 'Support', 'Invest', 'Daily', 'Weekly']"
+      :items="allTags"
       chips
       label="Tags"
       full-width
@@ -62,6 +62,7 @@
 import { validationMixin } from 'vuelidate';
 import { required, maxLength } from 'vuelidate/lib/validators';
 import { lowercaseValidator } from '@/utils/lowercase-validator';
+import { reportTags } from '@/data/reportTags';
 
 export const maxTextSize = 140;
 
@@ -77,6 +78,7 @@ export default {
       name: '',
       description: '',
       tags: [],
+      allTags: reportTags,
     };
   },
   computed: {
