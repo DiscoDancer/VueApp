@@ -15,10 +15,14 @@
     <v-textarea
       v-model="description"
       label="Description"
-      counter
+      :error-messages="descriptionErrors"
+      :counter="140"
+      required
       maxlength="140"
       full-width
       single-line
+      @input="$v.description.$touch()"
+      @blur="$v.description.$touch()"
     ></v-textarea>
 
     <v-divider></v-divider>
@@ -58,6 +62,7 @@ export default {
   mixins: [validationMixin],
   validations: {
     name: { required, maxLength: maxLength(140) },
+    description: { required, maxLength: maxLength(140) },
   },
   data() {
     return {
@@ -73,10 +78,24 @@ export default {
         return errors;
       }
       if (!this.$v.name.maxLength) {
-        errors.push('Name must be at most 10 characters long');
+        errors.push('Name must be at most 140 characters long');
       }
       if (!this.$v.name.required) {
         errors.push('Name is required.');
+      }
+
+      return errors;
+    },
+    descriptionErrors() {
+      const errors = [];
+      if (!this.$v.description.$dirty) {
+        return errors;
+      }
+      if (!this.$v.description.maxLength) {
+        errors.push('Description must be at most 140 characters long');
+      }
+      if (!this.$v.description.required) {
+        errors.push('Description is required.');
       }
 
       return errors;
@@ -96,6 +115,12 @@ export default {
 };
 </script>
 
-<style scoped>
-
+<style lang="scss">
+  .v-textarea{
+    &.error--text {
+      label {
+        color: #ff5252;
+      }
+    }
+  }
 </style>
