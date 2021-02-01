@@ -5,8 +5,9 @@
       v-model="name"
       :error-messages="nameErrors"
       :counter="140"
-      label="Name"
+      label="Name*"
       required
+      outlined
       clearable
       @input="$v.name.$touch()"
       @blur="$v.name.$touch()"
@@ -18,10 +19,11 @@
 
     <v-textarea
       v-model="description"
-      label="Description"
+      label="Description*"
       :error-messages="descriptionErrors"
       :counter="140"
       required
+      outlined
       clearable
       maxlength="140"
       full-width
@@ -42,6 +44,7 @@
       hide-no-data
       hide-selected
       multiple
+      outlined
       single-line
       class="pb-3"
     ></v-autocomplete>
@@ -116,8 +119,11 @@ export default {
   methods: {
     submit() {
       this.$v.$touch();
-      const { name, description, tags } = this;
-      this.$store.dispatch('addReport', { name, description, tags });
+
+      if (this.nameErrors.length === 0 && this.descriptionErrors.length === 0) {
+        const { name, description, tags } = this;
+        this.$store.dispatch('addReport', { name, description, tags });
+      }
     },
     clear() {
       this.$v.$reset();
