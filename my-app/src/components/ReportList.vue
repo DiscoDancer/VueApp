@@ -1,12 +1,22 @@
 <template>
-  <div>
-    <report
-      v-for="report in $store.state.reports"
-      :key="report.id"
-      :report="report"
-    >
-    </report>
-  </div>
+  <v-container>
+    <v-row>
+      <v-col
+        cols="12"
+        sm="12"
+        md="6"
+        lg="4"
+        v-for="report in $store.state.reports"
+        :key="report.id"
+      >
+        <report
+
+          :report="report"
+        >
+        </report>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
